@@ -1,5 +1,6 @@
 import { assertInstanceOf } from "@std/assert";
-import { type CustomerID, stats, type StatsResults } from "./stats.ts";
+import { stats, type StatsResults } from "./stats.ts";
+import type { CustomerID } from "./site.ts";
 
 Deno.test("Stats", { ignore: true }, async () => {
   const customer: CustomerID = 4657429;

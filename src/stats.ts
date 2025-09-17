@@ -1,4 +1,4 @@
-import { createURL, fetchjson } from "./site.ts";
+import { createURL, type CustomerID, fetchjson } from "./site.ts";
 
 /** Properties of investor stats */
 export type StatsResults = {
@@ -53,9 +53,6 @@ export type StatsParameters = {
 export const StatsDefaults: StatsParameters = {
   Period: "OneYearAgo",
 };
-
-/** Customer ID */
-export type CustomerID = number;
 
 /** Confirm stats include CustomerId */
 function validate(data: StatsResponse): boolean {
