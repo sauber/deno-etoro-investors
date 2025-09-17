@@ -1,6 +1,6 @@
 import { createURL, type CustomerID, fetchjson } from "./site.ts";
 
-type Mirror = {
+export type Mirror = {
   MirrorID: number;
   ParentCID: number;
   ParentUsername: string;
@@ -10,7 +10,7 @@ type Mirror = {
   PendingForClosure: boolean;
 };
 
-type Position = {
+export type Position = {
   InstrumentID: number;
   Direction: "Buy" | "Sell";
   Invested: number;
@@ -18,7 +18,7 @@ type Position = {
   Value: number;
 };
 
-type InstrumentType = {
+export type InstrumentType = {
   IndustryTypeID: number;
   Direction: "Buy" | "Sell";
   Invested: number;
@@ -26,7 +26,7 @@ type InstrumentType = {
   Value: number;
 };
 
-type StockIndustry = {
+export type StockIndustry = {
   StockIndustryID: number;
   Direction: "Buy" | "Sell";
   Invested: number;

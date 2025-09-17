@@ -25,8 +25,6 @@ export function createURL(path: string, parameters: URLParameters = {}): URL {
 
 /** Fetch JSON data from URL */
 export function fetchjson<T>(url: URL): Promise<T> {
-  console.log(url);
-
   return fetch(url, {
     headers: {
       accept: "application/json",
