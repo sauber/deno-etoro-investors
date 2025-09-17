@@ -39,7 +39,7 @@ export type StatsResults = {
 };
 
 /** API response */
-type StatsResponse = {
+export type StatsResponse = {
   Status: string;
   Data: StatsResults;
 };

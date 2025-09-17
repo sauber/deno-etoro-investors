@@ -89,6 +89,7 @@ export type DiscoverParameters = {
   isfund: boolean;
   gainmin: number;
   gainmax: number;
+  maxdailyriskscoremin?: number;
   maxdailyriskscoremax: number;
   maxmonthlyriskscoremax: number;
   copiersmin: number;
@@ -104,6 +105,9 @@ export type DiscoverParameters = {
   sort: string;
   page: number;
   pagesize: number;
+  profitablemonthspctmin?: number;
+  activeweeksmin?: number;
+  lastactivitymax?: number;
 };
 
 /** Default search parameters */
