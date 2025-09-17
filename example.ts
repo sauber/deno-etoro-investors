@@ -1,7 +1,7 @@
 import { linechart } from "jsr:@sauber/widgets";
 
 import {
-  type Chart,
+  type Simulation,
   chart,
   type CustomerID,
   discover,
@@ -30,17 +30,17 @@ const username: UserName = investors.Items[0].UserName;
 const id: CustomerID = investors.Items[0].CustomerId;
 
 // Stats
-const investor: StatsResults = await stats(id);
+const investor: StatsResults = (await stats(id)).Data;
 console.log(`${username} has a gain of ${investor.Gain} since one year ago.`);
 
 // Chart
-const chartData: Chart = await chart(username);
-const series: number[] = chartData.map((item) => item.equity);
+const chartData: Simulation = await chart(username);
+const series: number[] = chartData.simulation.oneYearAgo.chart.map((item) => item.equity);
 console.log("One year simulation chart:");
 console.log(linechart(series, 12, 72));
 
 // Instruments
-const instr: Instruments = await instruments();
+const instr: Instruments = (await instruments()).InstrumentDisplayDatas;
 
 // Portfolio
 const presults: PortfolioResults = await portfolio(id);

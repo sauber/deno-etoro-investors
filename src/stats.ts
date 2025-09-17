@@ -64,12 +64,12 @@ function validate(data: StatsResponse): boolean {
 export async function stats(
   cid: CustomerID,
   period: Partial<StatsParameters> = {},
-): Promise<StatsResults> {
+): Promise<StatsResponse> {
   const template = "/sapi/rankings/cid/%d/rankings";
   const path = template.replace("%d", String(cid));
   const parameters = Object.assign({}, StatsDefaults, period);
   const url: URL = createURL(path, parameters);
   const response = await fetchjson<StatsResponse>(url);
   validate(response);
-  return response.Data;
+  return response;
 }

@@ -32,11 +32,11 @@ function validate(data: Simulation): boolean {
 /** Fetch investor stats */
 export async function chart(
   username: UserName,
-): Promise<Chart> {
+): Promise<Simulation> {
   const template = "/sapi/trade-data-real/chart/public/%s/oneYearAgo/1";
   const path = template.replace("%s", username);
   const url: URL = createURL(path);
   const response = await fetchjson<Simulation>(url);
   validate(response);
-  return response.simulation.oneYearAgo.chart;
+  return response;
 }

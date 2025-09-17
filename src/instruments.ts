@@ -43,7 +43,7 @@ const url = new URL(
 );
 
 /** Fetch list of instruments */
-export async function instruments(): Promise<Instruments> {
+export async function instruments(): Promise<InstrumentResults> {
   const response = await fetchjson<InstrumentResults>(url);
-  return response.InstrumentDisplayDatas;
+  return response;
 }
