@@ -3,7 +3,7 @@ import { createURL, fetchjson } from "./site.ts";
 
 /** Properties of investors */
 export type Investor = {
-  CustomerId: string;
+  CustomerId: number;
   UserName: string;
   FullName: string;
   HasAvatar: boolean;
