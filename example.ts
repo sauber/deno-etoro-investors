@@ -4,6 +4,9 @@ import {
   type CustomerID,
   discover,
   type DiscoverResults,
+  type Instrument,
+  type Instruments,
+  instruments,
   portfolio,
   type PortfolioResults,
   Position,
@@ -11,7 +14,7 @@ import {
   stats,
   type StatsResults,
   type UserName,
-} from "jsr:@sauber/etoro-investors";
+} from "jsr:@sauber/etoro-investors@0.2.0";
 
 import { linechart } from "jsr:@sauber/widgets";
 
@@ -34,13 +37,23 @@ console.log(`${username} has a gain of ${investor.Gain} since one year ago.`);
 // Chart
 const chartData: Chart = await chart(username);
 const series: number[] = chartData.map((item) => item.equity);
-console.log("Simulation Chart:");
+console.log("One year simulation chart:");
 console.log(linechart(series, 12, 72));
+
+// Instruments
+const instr: Instruments = await instruments();
+console.log(`Found ${instr.length} instruments for trading.`);
 
 // Portfolio
 const presults: PortfolioResults = await portfolio(id);
 const positions: Position[] = presults.AggregatedPositions.sort(
   (a, b) => b.Value - a.Value,
 ).slice(0, 3);
-console.log("Top 3 Positions:");
-positions.forEach((p: Position) => console.log(p.InstrumentID, p.Value));
+console.log("Top 3 positions:");
+positions.forEach((p: Position) =>
+  console.log(
+    instr.find((i: Instrument) => i.InstrumentID === p.InstrumentID)
+      ?.InstrumentDisplayName,
+    p.Value,
+  )
+);
