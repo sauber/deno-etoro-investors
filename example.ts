@@ -1,3 +1,5 @@
+import { linechart } from "jsr:@sauber/widgets";
+
 import {
   type Chart,
   chart,
@@ -9,14 +11,11 @@ import {
   instruments,
   portfolio,
   type PortfolioResults,
-  Position,
   type Position,
   stats,
   type StatsResults,
   type UserName,
-} from "jsr:@sauber/etoro-investors@0.2.0";
-
-import { linechart } from "jsr:@sauber/widgets";
+} from "jsr:@sauber/etoro-investors";
 
 // Discovery
 const investors: DiscoverResults = await discover();
@@ -42,7 +41,6 @@ console.log(linechart(series, 12, 72));
 
 // Instruments
 const instr: Instruments = await instruments();
-console.log(`Found ${instr.length} instruments for trading.`);
 
 // Portfolio
 const presults: PortfolioResults = await portfolio(id);
@@ -52,8 +50,8 @@ const positions: Position[] = presults.AggregatedPositions.sort(
 console.log("Top 3 positions:");
 positions.forEach((p: Position) =>
   console.log(
+    p.Value.toFixed(2) + "%",
     instr.find((i: Instrument) => i.InstrumentID === p.InstrumentID)
       ?.InstrumentDisplayName,
-    p.Value,
   )
 );
