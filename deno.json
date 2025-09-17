@@ -5,7 +5,7 @@
   "lock": false,
   "exports": "./mod.ts",
     "publish": {
-    "exclude": ["src/*/*.test.ts"],
+    "exclude": ["src/*.test.ts"],
     "include": ["LICENSE", "README.md", "mod.ts", "example.ts", "src/*.ts"]
   },
   "imports": {
