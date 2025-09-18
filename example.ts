@@ -13,7 +13,7 @@ import {
   type PortfolioResults,
   type Position,
   stats,
-  type StatsResults,
+  type StatsData,
   type UserName,
 } from "jsr:@sauber/etoro-investors";
 
@@ -30,7 +30,7 @@ const username: UserName = investors.Items[0].UserName;
 const id: CustomerID = investors.Items[0].CustomerId;
 
 // Stats
-const investor: StatsResults = (await stats(id)).Data;
+const investor: StatsData = (await stats(id)).Data;
 console.log(`${username} has a gain of ${investor.Gain} since one year ago.`);
 
 // Chart

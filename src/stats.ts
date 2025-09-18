@@ -1,7 +1,7 @@
 import { createURL, type CustomerID, fetchjson } from "./site.ts";
 
 /** Properties of investor stats */
-export type StatsResults = {
+export type StatsData = {
   CustomerId: number;
   UserName: string;
   DisplayFullName: boolean;
@@ -39,9 +39,9 @@ export type StatsResults = {
 };
 
 /** API response */
-export type StatsResponse = {
+export type StatsResults = {
   Status: string;
-  Data: StatsResults;
+  Data: StatsData;
 };
 
 /** Available search parameters */
@@ -55,7 +55,7 @@ export const StatsDefaults: StatsParameters = {
 };
 
 /** Confirm stats include CustomerId */
-function validate(data: StatsResponse): boolean {
+function validate(data: StatsResults): boolean {
   if (!data.Data.CustomerId) throw new Error(`CustomerId missing`);
   return true;
 }
@@ -64,12 +64,12 @@ function validate(data: StatsResponse): boolean {
 export async function stats(
   cid: CustomerID,
   period: Partial<StatsParameters> = {},
-): Promise<StatsResponse> {
+): Promise<StatsResults> {
   const template = "/sapi/rankings/cid/%d/rankings";
   const path = template.replace("%d", String(cid));
   const parameters = Object.assign({}, StatsDefaults, period);
   const url: URL = createURL(path, parameters);
-  const response = await fetchjson<StatsResponse>(url);
+  const response = await fetchjson<StatsResults>(url);
   validate(response);
   return response;
 }
