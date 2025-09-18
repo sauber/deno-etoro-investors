@@ -1,7 +1,7 @@
 import { createURL, fetchjson, type UserName } from "./site.ts";
 
 /** Properties of each entry in chart */
-type ChartItem = {
+export type ChartItem = {
   timestamp: string;
   equity: number;
 };
