@@ -10,7 +10,7 @@ type ChartItem = {
 export type Chart = ChartItem[];
 
 /** Output of API call */
-export type Simulation = {
+export type ChartResults = {
   simulation: {
     oneYearAgo: {
       chart: Chart;
@@ -19,7 +19,7 @@ export type Simulation = {
 };
 
 /** Confirm stats include CustomerId */
-function validate(data: Simulation): boolean {
+function validate(data: ChartResults): boolean {
   const chartLength = data.simulation.oneYearAgo.chart.length;
   if (chartLength < 365) {
     throw new Error(
@@ -32,11 +32,11 @@ function validate(data: Simulation): boolean {
 /** Fetch investor stats */
 export async function chart(
   username: UserName,
-): Promise<Simulation> {
+): Promise<ChartResults> {
   const template = "/sapi/trade-data-real/chart/public/%s/oneYearAgo/1";
   const path = template.replace("%s", username);
   const url: URL = createURL(path);
-  const response = await fetchjson<Simulation>(url);
+  const response = await fetchjson<ChartResults>(url);
   validate(response);
   return response;
 }
