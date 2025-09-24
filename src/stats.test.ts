@@ -4,6 +4,6 @@ import type { CustomerID } from "./site.ts";
 
 Deno.test("Stats", { ignore: true }, async () => {
   const customer: CustomerID = 4657429;
-  const results: StatsResults = (await stats(customer)).Data;
+  const results: StatsResults = (await stats(customer));
   assertInstanceOf(results, Object);
 });

@@ -5,7 +5,10 @@ export const site = "https://www.etoro.com";
 const uuid = crypto.randomUUID();
 
 /** Dict of parameters */
-export type URLParameters = Record<string, string | number | boolean>;
+export type URLParameters = Record<
+  string,
+  string | number | boolean | undefined
+>;
 
 /** Numeric ID of Customer */
 export type CustomerID = number;
@@ -17,7 +20,7 @@ export type UserName = string;
 export function createURL(path: string, parameters: URLParameters = {}): URL {
   const url = new URL(path, site);
   Object.entries(parameters).forEach(([key, value]) =>
-    url.searchParams.set(key, String(value))
+    value !== undefined && url.searchParams.set(key, String(value))
   );
   url.searchParams.set("client_request_id", uuid);
   return url;
