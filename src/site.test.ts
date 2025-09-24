@@ -15,6 +15,7 @@ Deno.test("site", () => {
 
 Deno.test("Blank parameter", () => {
   const path = "/test/path";
-  const url = createURL(path, { istestaccount: undefined });
+  const url = createURL(path, { istestaccount: undefined, copyblock: null });
   assertNotMatch(url.toString(), /istestaccount/);
+  assertNotMatch(url.toString(), /copyblock/);
 });

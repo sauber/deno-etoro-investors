@@ -7,7 +7,7 @@ const uuid = crypto.randomUUID();
 /** Dict of parameters */
 export type URLParameters = Record<
   string,
-  string | number | boolean | undefined
+  string | number | boolean | undefined | null
 >;
 
 /** Numeric ID of Customer */
@@ -20,7 +20,8 @@ export type UserName = string;
 export function createURL(path: string, parameters: URLParameters = {}): URL {
   const url = new URL(path, site);
   Object.entries(parameters).forEach(([key, value]) =>
-    value !== undefined && url.searchParams.set(key, String(value))
+    value !== undefined && value !== null &&
+    url.searchParams.set(key, String(value))
   );
   url.searchParams.set("client_request_id", uuid);
   return url;
