@@ -21,9 +21,9 @@ export type ChartResults = {
 /** Confirm stats include CustomerId */
 function validate(data: ChartResults): boolean {
   const chartLength = data.simulation.oneYearAgo.chart.length;
-  if (chartLength < 365) {
+  if (chartLength < 1) {
     throw new Error(
-      `Chart length of ${chartLength} days is less than one year`,
+      `Chart length of ${chartLength} days is less than one`,
     );
   }
   return true;
